@@ -11,6 +11,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// CreateClient creates a new Docker client
 func CreateClient() (*context.Context, *client.Client, error) {
 	ctx := context.Background()
 	client, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
@@ -21,6 +22,7 @@ func CreateClient() (*context.Context, *client.Client, error) {
 	return &ctx, client, err
 }
 
+// Reconnect tries to reconnect to the Docker Engine
 func Reconnect() (*context.Context, *client.Client) {
 	var ctx *context.Context
 	var client *client.Client
@@ -37,6 +39,7 @@ func Reconnect() (*context.Context, *client.Client) {
 	return ctx, client
 }
 
+// StreamEvents streams Docker events
 func StreamEvents(ctx *context.Context, c *client.Client) (<-chan events.Message, <-chan error) {
 	filter := filters.NewArgs()
 	filter.Add("type", "container")

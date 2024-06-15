@@ -13,15 +13,18 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// checkIP checks if the given string is a valid IP address
 func checkIP(ip string) bool {
 	return net.ParseIP(ip) != nil
 }
 
+// checkCIDR checks if the given string is a valid CIDR
 func checkCIDR(cidr string) bool {
 	_, _, err := net.ParseCIDR(cidr)
 	return err == nil
 }
 
+// CreateUfwRule creates a ufw rule for the given container
 func CreateUfwRule(ch <-chan *types.ContainerJSON, c *cache.Cache) {
 	for container := range ch {
 		containerName := strings.Replace(container.Name, "/", "", 1) // container name appears with prefix "/"

@@ -9,6 +9,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// SetupLogger sets up the logger with the given log level
 func SetupLogger() {
 	zerolog.CallerMarshalFunc = func(pc uintptr, file string, line int) string {
 		short := file

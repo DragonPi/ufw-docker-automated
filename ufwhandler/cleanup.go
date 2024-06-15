@@ -12,6 +12,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// isValidRule checks if the given rule is in the correct format
 func isValidRule(rule string) bool {
 	valid, err := regexp.MatchString("^ufw route (allow|deny) (.*?)'(.*?):(.*?)'$", rule)
 	if err != nil || !valid {
@@ -20,6 +21,7 @@ func isValidRule(rule string) bool {
 	return true
 }
 
+// Cleanup removes all ufw rules that were added by the ufwhandler
 func Cleanup(ctx *context.Context, client *client.Client) {
 	ufwRuleMap := make(map[string][]string)
 
@@ -58,6 +60,7 @@ func Cleanup(ctx *context.Context, client *client.Client) {
 	}
 }
 
+// clean deletes the given ufw rules
 func clean(rules []string) {
 	for _, rule := range rules {
 		cmd := exec.Command("sh", "-c", "sudo ufw route delete "+rule[10:]) // trimming first couple of words "ufw route " to fit delete command

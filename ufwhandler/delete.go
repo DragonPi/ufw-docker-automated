@@ -8,6 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// DeleteUfwRule deletes a ufw rule for the given container
 func DeleteUfwRule(containerID <-chan string, c *cache.Cache) {
 	for id := range containerID {
 

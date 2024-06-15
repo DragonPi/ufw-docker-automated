@@ -8,6 +8,7 @@ import (
 	"github.com/shinebayar-g/ufw-docker-automated/ufwhandler"
 )
 
+// main is the entrypoint of the application
 func main() {
 	logger.SetupLogger()
 	ctx, client, err := ufwhandler.CreateClient()
