@@ -1,4 +1,5 @@
 # Binaries for programs and plugins
+ufw-docker-automated
 *.exe
 *.exe~
 *.dll
